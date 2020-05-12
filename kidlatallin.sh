@@ -818,7 +818,7 @@ chmod 755 /etc/openvpn/script/login.sh
 chmod 755 /etc/openvpn/script/disconnect.sh
 crontab -r
 mkdir /usr/sbin/kpn
-wget -O /usr/sbin/kpn/connection.php "http://Kidlatvpn.000webhostapp.com/premiumconnection.sh"
+wget -O /usr/sbin/kpn/connection.php "https://raw.githubusercontent.com/boyapper/boy/master/premiumconnection.sh"
 echo "*/3 * * * * /usr/bin/php /usr/sbin/kpn/connection.php >/dev/null 2>&1
 */3 * * * * /bin/bash /usr/sbin/kpn/active.sh >/dev/null 2>&1
 */3 * * * * /bin/bash /usr/sbin/kpn/inactive.sh >/dev/null 2>&1" | tee -a /var/spool/cron/root
@@ -864,7 +864,7 @@ chmod 755 /etc/openvpn/script/login.sh
 chmod 755 /etc/openvpn/script/disconnect.sh
 crontab -r
 mkdir /usr/sbin/kpn
-wget -O /usr/sbin/kpn/connection.php "http://Kidlatvpn.000webhostapp.com/vipconnection.sh"
+wget -O /usr/sbin/kpn/connection.php "https://raw.githubusercontent.com/boyapper/boy/master/vipconnection.sh"
 echo "*/3 * * * * /usr/bin/php /usr/sbin/kpn/connection.php >/dev/null 2>&1
 */3 * * * * /bin/bash /usr/sbin/kpn/active.sh >/dev/null 2>&1
 */3 * * * * /bin/bash /usr/sbin/kpn/inactive.sh >/dev/null 2>&1" | tee -a /var/spool/cron/root
@@ -910,7 +910,7 @@ chmod 755 /etc/openvpn/script/login.sh
 chmod 755 /etc/openvpn/script/disconnect.sh
 crontab -r
 mkdir /usr/sbin/kpn
-wget -O /usr/sbin/kpn/connection.php "http://Kidlatvpn.000webhostapp.com/privateconnection.sh"
+wget -O /usr/sbin/kpn/connection.php "https://raw.githubusercontent.com/boyapper/boy/master/privateconnection.sh"
 echo "*/3 * * * * /usr/bin/php /usr/sbin/kpn/connection.php >/dev/null 2>&1
 */3 * * * * /bin/bash /usr/sbin/kpn/active.sh >/dev/null 2>&1
 */3 * * * * /bin/bash /usr/sbin/kpn/inactive.sh >/dev/null 2>&1" | tee -a /var/spool/cron/root
