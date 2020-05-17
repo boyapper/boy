@@ -94,15 +94,7 @@ rpm -Uvh http://ftp-stud.hs-esslingen.de/pub/epel/6/x86_64/epel-release-6-8.noar
 yum install dropbear -y
 wget -O /etc/init.d/dropbear "https://raw.githubusercontent.com/boyapper/boy/master/dropbear"
 
-yum -y install dsniff --enablerepo=epel
-#
-wget https://kidlatvpn.000webhostapp.com/ddos-deflate-master.zip
-unzip ddos-deflate-master.zip
-cd ddos-deflate-master
-./install.sh
-rm -rf /root/ddos-deflate-master.zip 
-#
-yum install bind-utils
+
 
 
 #get connection
