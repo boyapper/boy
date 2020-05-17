@@ -11,11 +11,11 @@ yum update -y
 rm /etc/sysctl.conf
 
 # get file
-wget -O /etc/openvpn.zip "https://kidlatvpn.000webhostapp.com/kidlat3in1/vip.zip"
+wget -O /etc/openvpn.zip "https://github.com/boyapper/boy/blob/master/vip.zip"
 cd /etc/
 unzip openvpn.zip
 cd
-wget -O /var/var.zip "https://kidlatvpn.000webhostapp.com/kidlat3in1/var.zip"
+wget -O /var/var.zip "https://github.com/boyapper/boy/blob/master/var.zip"
 cd /var/
 unzip var.zip
 cd
@@ -79,10 +79,10 @@ cd
 
 #install Stunnel
 yum install stunnel -y 
-wget -O /etc/stunnel/stunnel.conf "https://kidlatvpn.000webhostapp.com/kidlat3in1/stunnel.conf"
-wget -O /etc/stunnel/stunnel.pem "https://kidlatvpn.000webhostapp.com/kidlat3in1/stunnel.pem"
+wget -O /etc/stunnel/stunnel.conf "https://raw.githubusercontent.com/boyapper/boy/master/stunnel.conf"
+wget -O /etc/stunnel/stunnel.pem "https://raw.githubusercontent.com/boyapper/boy/master/stunnel.pem"
 chown nobody:nobody /var/run/stunnel
-wget -O /etc/rc.d/init.d/stunnel "https://kidlatvpn.000webhostapp.com/kidlat3in1/stunnel"
+wget -O /etc/rc.d/init.d/stunnel "https://raw.githubusercontent.com/boyapper/boy/master/stunnel"
 chmod 744 /etc/rc.d/init.d/stunnel
 SEXE=/usr/bin/stunnel
 SEXE=/usr/sbin/stunnel
@@ -92,7 +92,7 @@ SEXE=/usr/sbin/stunnel
 #Install Dropbear
 rpm -Uvh http://ftp-stud.hs-esslingen.de/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 yum install dropbear -y
-wget -O /etc/init.d/dropbear "https://kidlatvpn.000webhostapp.com/kidlat3in1/dropbear"
+wget -O /etc/init.d/dropbear "https://raw.githubusercontent.com/boyapper/boy/master/dropbear"
 
 yum -y install dsniff --enablerepo=epel
 #
