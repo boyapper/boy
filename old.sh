@@ -322,8 +322,8 @@ EOF
 cat << EOM > /etc/openvpn/script/connect.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-##set status online to user connected
-mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE users SET is_connected=1 WHERE username='$common_name'"
+user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
+[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 
 EOM
 
@@ -805,8 +805,9 @@ EOM
 cat << EOM > /etc/openvpn/script/disconnect.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-##set status offline to user disconnected
-mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE users SET bandwidth_premium=bandwidth_premium +'$bytes_received' WHERE user_name='$common_name'"
+user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
+[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
+##Authentication
 EOM
 
 chmod 755 /etc/openvpn/script/login.sh
@@ -851,8 +852,9 @@ EOM
 cat << EOM > /etc/openvpn/script/disconnect.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-##set status offline to user disconnected
-mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE users SET bandwidth_vip=bandwidth_vip +'$bytes_received' WHERE user_name='$common_name'"
+user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
+[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
+
 EOM
 
 chmod 755 /etc/openvpn/script/login.sh
@@ -896,8 +898,9 @@ EOM
 cat << EOM > /etc/openvpn/script/disconnect.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-##set status offline to user disconnected
-mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE users SET bandwidth_private=bandwidth_private +'$bytes_received' WHERE user_name='$common_name'"
+user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
+[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
+
 EOM
 
 chmod 755 /etc/openvpn/script/login.sh
