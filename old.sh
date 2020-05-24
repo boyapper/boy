@@ -321,24 +321,9 @@ EOF
 
 cat << EOM > /etc/openvpn/script/connect.sh
 #!/bin/bash
-username=`head -n1 $1 | tail -1`   
-password=`head -n2 $1 | tail -1`
-tm="$(date +%s)"
-dt="$(date +'%Y-%m-%d %H:%M:%S')"
-
-HOST='mysql1.blazingfast.io'
-USER='cybertea_old'
-PASS='jan022011'
-DB='cybertea_old'
-PORT='3306'
-
-##Authentication
-PRE="user_name='$username' AND user_pass='$password' AND is_validated=1 AND frozen=0 AND duration > 0"
-VIP="user_name='$username' AND user_pass='$password' AND is_validated=1 AND frozen=0 AND is_vip=1 AND vip_duration > 0"
-PRIV="user_name='$username' AND user_pass='$password' AND frozen=0 AND private_duration > 0"
-Query="SELECT user_name FROM users WHERE $PRE OR $VIP OR $PRIV"
-user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "$Query"`
-[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
+. /etc/openvpn/script/config.sh
+##set status online to user connected
+mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE users SET is_connected=1 WHERE username='$common_name'"
 
 EOM
 
@@ -806,16 +791,14 @@ install
 /bin/cat <<"EOM" >/etc/openvpn/script/login.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-tm="$(date +%s)"
-dt="$(date +'%Y-%m-%d %H:%M:%S')"
-
+user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
+[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 ##Authentication
 PRE="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND duration > 0"
 VIP="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND vip_duration > 0"
 PRIV="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND private_duration > 0"
 Query="SELECT user_name FROM users WHERE $PRE OR $VIP OR $PRIV"
 user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "$Query"`
-[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 
 EOM
 
@@ -852,8 +835,8 @@ install
 /bin/cat <<"EOM" >/etc/openvpn/script/login.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-tm="$(date +%s)"
-dt="$(date +'%Y-%m-%d %H:%M:%S')"
+user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
+[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 
 ##Authentication
 PRE="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND duration > 0"
@@ -898,9 +881,8 @@ install
 /bin/cat <<"EOM" >/etc/openvpn/script/login.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-tm="$(date +%s)"
-dt="$(date +'%Y-%m-%d %H:%M:%S')"
-
+user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
+[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 ##Authentication
 PRE="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND duration > 0"
 VIP="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND vip_duration > 0"
