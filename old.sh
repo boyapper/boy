@@ -793,12 +793,6 @@ install
 . /etc/openvpn/script/config.sh
 user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
 [ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
-##Authentication
-PRE="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND duration > 0"
-VIP="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND vip_duration > 0"
-PRIV="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND private_duration > 0"
-Query="SELECT user_name FROM users WHERE $PRE OR $VIP OR $PRIV"
-user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "$Query"`
 
 EOM
 
@@ -839,13 +833,6 @@ install
 user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
 [ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 
-##Authentication
-PRE="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND duration > 0"
-VIP="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND vip_duration > 0"
-PRIV="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND private_duration > 0"
-Query="SELECT user_name FROM users WHERE $VIP OR $PRIV"
-user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "$Query"`
-[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 
 EOM
 
@@ -884,13 +871,6 @@ install
 #!/bin/bash
 . /etc/openvpn/script/config.sh
 user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_active=1 AND frozen=0 AND is_validated=1 AND vip_duration > 0"
-[ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
-##Authentication
-PRE="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND duration > 0"
-VIP="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND vip_duration > 0"
-PRIV="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND private_duration > 0"
-Query="SELECT user_name FROM users WHERE $PRIV"
-user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "$Query"`
 [ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 
 EOM
