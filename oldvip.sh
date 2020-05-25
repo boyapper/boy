@@ -12,7 +12,7 @@ yum update -y
 rm /etc/sysctl.conf
 
 # get file
-wget -O /etc/premium.zip "https://github.com/boyapper/boy/blob/master/oldvip.zip"
+wget -O /etc/premium.zip "https://github.com/boyapper/boy/blob/master/premiumold.zip"
 cd /etc/
 unzip premium.zip
 cd
