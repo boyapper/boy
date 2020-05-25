@@ -1,23 +1,18 @@
 #!/bin/bash
-################################################
-#-----------------------
-# Automation Script Ubuntu 16 64Bit.
-# Powered By: Codeph
-# Created By: Codeph
-# Features: OpenVPN setup for Ubuntu 16 64Bit.
-#-----------------------
-################################################
-clear
-# Please Modify according to your needs
-sudo apt-get install wget -y &> /dev/null;
-MYIP=$(wget -qO- ipv4.icanhazip.com);
+# Auto Script for Centos 6.xx
+# Made w/love by hunters
+# version v.11
 ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
+sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config &> /dev/null
 #change this according to your database details
+#Note: Password w/ Special Characters are not allowed.
 dbhost='mysql1.blazingfast.io';
-dbuser='teamboss1_boy';
+dbuser='cybertea_kidlat';
 dbpass='jan022011';
-dbname='teamboss1_boy';
+dbname='cybertea_kidlat';
 dbport='3306';
+
+
 ##certificates
 cacert='-----BEGIN CERTIFICATE-----
 MIIExDCCA6ygAwIBAgIJAKyvksf/QCcwMA0GCSqGSIb3DQEBCwUAMIGcMQswCQYD
@@ -146,34 +141,6 @@ cnCRaQKmeVihTxsYwJpLlhaycKXNu78ztRp2UZOKyktFUL5SvSjPlH7ZhGyTQ7PQ
 L6U+Mr0NRorRRi1k8FAvxn1UVIg/9QIXcW8cS80s1MD8ORW8RmI269D+/MLB9fsY
 b3yRYQ4s4RcIRJ9m5NWZML/1Cpa2Ho/qxrtrtAyC7++FbnSUwgwrlN4=
 -----END CERTIFICATE-----';
-serverkey='-----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDieABAyt6F0y1j
-VMw8SXKYqXa9G2KVqjYf67aGS9qpwFB7wL8/b9Q4MrmtM7gT+2u4QcGYBaw+SWQ+
-G5+PB7i1tnyGWb6jkzGMt3e4UKSxGTs0qSFKpiWDSGDLDR8TW9Wv6yodVUGNdsUF
-DZh6mvgiWEwRAZnjs0AKnUzMix6Gv5tjJmEZhlqIqZmTZg50gjGDs3/MzVcD5VvO
-PJddyGLI6JTYWumoO766prCFWeQQ06LE0037j6lumLu2aZ1jxAHfRhpd0ia3Dz10
-Iv67FnUoQ+yc5a3Utq9C6yZ2xoMpudBQRM3x0Q9oey2Mhn8k/I9NBW5Hi3zABOHo
-yZdMu/6nAgMBAAECggEAH9fduT6NQWXrKN9ghE2ThnG1l2uFViQDzkM3e/Sof1vi
-NTRp78KKpYhEYV03Ud/1Sog8b2LE0FFDfhQmQFdGmo5ZPg7aZmeo/O9DLzBvp9Mz
-ZvktDDEGb0o7CfIDX5Z3GnBHkK5PNFPx6f76ZKrrnvCpaW6/M6wdoiByDwS0ux9s
-Pr8ALFFKPgYwc5QNt/R0iFOYqQfSA3UrzdOolklbfQRB9+n5kBqQ69PlKd+JwhGy
-tO07DysEmNGlMQoNw7pm6nDVwYO+KdmFcj23jTgcgsmvdqh6ucreFYWYn9pf6wGo
-0HJ9E7J2BRXdfgZ26WdDicPONFCmuQBvsCnW+pVGiQKBgQD3Dv8W17ZtAZTwP1m3
-uNRn2mYcI4+0MufXwaT3yqQ2G8NY5kTvEeqAO/+LubzOC231FAU+359YQHK/f1X0
-NpmiGfOtu4iQxjGujBr1PndIIhJZAJYgbr9F6rMnRpcVfhTZO5e/5nr92mksMrK2
-zzZLw0QObLw0nJqnL1hrmBBH0wKBgQDqqj1EVLfTizxf8BtN7SbQqwyFgirpGBOC
-zJKORNQsDgYs949sWOsQz+q09NIhOkd1jlvE7GA5g/v6+UkWuN7ZGAhFnre3u9Aa
-pn3xyqO9Sur6h2S17EUlRVYww7OITTquSsjZT6l5cKA6FRIuEm3PuBypuHLo3CAB
-+rZXSDUdXQKBgQDbAvdNV6LHVTykEXTGMlpRSkF0tm2g7/Oox2gnpgMWWFw/Bbqc
-OESqswVh5yChg25RcRMJXpHSWSef7RDUckaVde4X2ARDWv8V3evT9jElx9Z+AdAU
-Jjj3kQyKR8CNc/ylanemzXnAagsL/FGDT4OxfANryia5eQ58ILOAhggAswKBgBEx
-vB9/naCQeTIGY9nH4Ko1fktiCEbgDr3sw2hNPsajmGw/D3E+6qpmsankrmjk3kuM
-zMiXEU3lj9cJ4QMbNKjvi9ueD5QU3OC3Bk9rK6g5DxKgTQ7PaxmaBQC5tjPshLo0
-nJbfsWlGiVb4KEbb7tPjh6Yf77uENYwvlKC8l7e5AoGANeITeKJPjrzvHjx27Zdf
-8brrZV1zbQZoeOWR6qj/0XSufNOnGK5KJXjNE8zKovmGoZjjspnQBzoTN5uJ1IoM
-QpNYIm3S1oSDImrrNeRjIaUrVo3FAfu4vf3eKNqHLe9kUSriLU5DSu/Wfep3fFn1
-nkd5vWo7A6vkZX/Iu6MzKDE=
------END PRIVATE KEY-----';
 dh='-----BEGIN DH PARAMETERS-----
 MIIBCAKCAQEAohzwXz9fsjw+G9Q14qINNOhZnTt/b30zzJYm4o2NIzAngM6E6GPm
 N5USUt0grZw6h3VP9LyqQoGi/bHFz33YFG5lgDF8FAASEh07/leF7s0ohhK8pspC
@@ -182,51 +149,57 @@ JVD+mRatwBrIImXUpJvYI2pXKxtCOnDa2FFjAOHKixiAXqVcmJRwNaSklQcrpXdn
 FXQ/AVkvxYaO8pFI2Vh+CNMk7Vvi8d3DTayvoL2HTgFi+OIEbiiE/Nzryu+jDGc7
 79FkBHWOa/7eD2nFrHScUJcwWiSevPQjQwIBAg==
 -----END DH PARAMETERS-----';
-# Terminal Color
-
 RED='\033[01;31m';
 RESET='\033[0m';
 GREEN='\033[01;32m';
-WHITE='\033[01;37m';
-YELLOW='\033[00;33m';
 
-MYIP=$(wget -qO- ipv4.icanhazip.com);
-#Installing Pre Packages
-echo -e "                $GREEN Updating Repository.$RESET"
-sudo apt-get update &> /dev/null;
-echo -e "                $GREEN Installing Required Packages$RESET"
+echo -e "$GREEN                Please Wait... $RESET"
 sleep 3s
-echo -e "                $GREEN Please wait for a while..$RESET"
-sudo apt-get install mariadb-client -y &> /dev/null;
-sudo apt-get install dropbear -y &> /dev/null;
-sudo apt-get install openvpn -y &> /dev/null;
-sudo apt-get install iptables -y &> /dev/null;
-sudo apt-get install sudo -y &> /dev/null;
+echo -e "$GREEN                Installing Updates $RESET"
+yum update -y
 clear
-echo -e "                $GREEN Its done lets configure it now..$RESET"
+echo -e "$GREEN                Updates Done  $RESET"
 sleep 3s
+echo -e "$GREEN                Lets install the required packages. $RESET"
+sleep 3s
+clear
+echo -e "$GREEN                Please Wait... $RESET"
+yum update -y &> /dev/null
+yum install -y telnet telnet-server vixie-cron crontabs httpd nano squid mysql-server &> /dev/null
+yum install -y php php-pdo php-mysqli php-mysql php-mbstring.x86_64 epel-release &> /dev/null
+yum install -y openvpn curl sudo &> /dev/null
+MYIP=$(curl -4 icanhazip.com); &> /dev/null
+echo -e "$GREEN                Installation Complete $RESET"
+echo -e "$GREEN                Lets configure the settings and routing $RESET"
+sleep 4s
+clear
+echo -e "$GREEN                Please wait while we are fighting with your firewall $RESET"
+sleep 4s
 
-mkdir /etc/openvpn/script
-mkdir /etc/openvpn/log
-mkdir /etc/openvpn/keys
+#ethernet
+ethernet=""
 
-ethernet="eth0"
 echo "************************************************************************************"
 echo -e " Note: Your Network Interface is followed by the word \e[1;31m' dev '\e[0m"
 echo " If the interface doesnt match openvpn will be connected but no internet access."
 echo " Please choose or type properly"
 echo "************************************************************************************"
 echo ""
-echo -e "                $GREEN Your Network Interface is:$RESET"
+echo "Your Network Interface is:"
 ip route | grep default
 echo ""
-
+echo "Ethernet:"
+read ethernet
 echo ""
 echo ""
-clear
+clear;
 
-
-
+## making script and keys
+mkdir /etc/openvpn/script
+mkdir /etc/openvpn/log
+mkdir /etc/openvpn/keys
+mkdir /var/www/html/status
+touch /var/www/html/status/tcp2.txt
 cat << EOF > /etc/openvpn/keys/ca.crt
 $cacert
 EOF
@@ -253,16 +226,45 @@ DB='$dbname'
 PORT='$dbport'
 EOF
 
+/bin/cat <<"EOM" >/etc/openvpn/script/connect.sh
+#!/bin/bash
+  
+tm="$(date +%s)"
+dt="$(date +'%Y-%m-%d %H:%M:%S')"
+timestamp="$(date +'%FT%TZ')"
+  
+  
+. /etc/openvpn/script/config.sh
+device=`mysql -u $USER -p$PASS -D $DB -h $HOST --skip-column-name -e "SELECT users.device_connected FROM users WHERE users.user_name='$common_name'"`
+device2="$device"
+add="1"
+mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE users SET users.device_connected='$device2'+'$add' WHERE users.user_name='$common_name'"
+  
+EOM
+  
+/bin/cat <<"EOM" >/etc/openvpn/script/disconnect.sh
+#!/bin/bash
+tm="$(date +%s)"
+dt="$(date +'%Y-%m-%d %H:%M:%S')"
+timestamp="$(date +'%FT%TZ')"
+  
+. /etc/openvpn/script/config.sh
+device=`mysql -u $USER -p$PASS -D $DB -h $HOST --skip-column-name -e "SELECT users.device_connected FROM users WHERE users.user_name='$common_name'"`
+device2="$device"
+deduct="1"
+mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE users SET users.device_connected='$device2'-'$deduct' WHERE users.user_name='$common_name'"
+  
+  
+EOM
 
-TYPE=""
-#select type of server
-echo -e "Type of your Server$RESET"
+
+
+echo -e "                $GREEN Type of your Server$RESET"
 PS3='Choose or Type a Plan: '
 options=("Premium" "VIP" "PRIVATE" "Quit")
 select opt in "${options[@]}"; do
   case "$opt,$REPLY" in
     Premium,*|*,Premium) 
-    $TYPE="premium"
     echo "";
     
   
@@ -288,10 +290,9 @@ user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST --skip-column-name -e "$Query"
 EOM
   
 echo "";
-echo -e " 1) Premium Selected";
+echo -e "                $GREEN 1) Premium Selected$RESET";
 break ;;
-VIP,*|*,VIP)
-$TYPE="vip" 
+VIP,*|*,VIP) 
 echo "";
   
 /bin/cat <<"EOM" >/etc/openvpn/script/login.sh
@@ -311,10 +312,9 @@ user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST --skip-column-name -e "$Query"
 EOM
   
 echo "";
-echo -e " 2) VIP Selected";
+echo -e "                $GREEN 2) VIP Selected$RESET";
 break ;;
 PRIVATE,*|*,PRIVATE) 
-$TYPE="private"
 echo "";
 
   
@@ -333,79 +333,69 @@ user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST --skip-column-name -e "$Query"
 EOM
   
 echo "";
-echo -e " 3) PRIVATE Selected";
+echo -e "                $GREEN 3) PRIVATE Selected$RESET";
 break ;;
-Quit,*|*,Quit) echo -e "Installation Cancelled!";
-echo -e " Rebuild your vps and correct the process.";
+Quit,*|*,Quit) echo -e " $RED   Installation Cancelled!$RESET";
+echo -e "                $RED   Rebuild your vps and correct the process.$RESET";
 exit;
 break ;; *)
-echo -e " Invalid: Just choose what you want";
+echo -e "                $RED   Invalid: Just choose what you want$RESET";
 esac
 done
-
-read -p "Enter Server Name: " SNAME
-cat << EOF > /etc/openvpn/script/insert_server.sh
-#!/bin/bash
-. /etc/openvpn/script/config.sh
-Query1="INSERT INTO server_list(server_name, server_ip, server_category, server_port, server_folder, server_tcp, server_parser, status)"
-Query="$Query1 VALUES('$SNAME', '$MYIP', '$TYPE', 80, 'status', 'tcp2', 'http://$MYIP:80/status/tcp2.txt', 1)"
-mysql -u $USER -p$PASS -D $DB -h $HOST --skip-column-names -e "$Query"
-EOF
-
-
 clear
-echo "Setting permission to script folder"
-chmod 755 -R /etc/openvpn/script
-sleep 3
 
-clear
-echo "Inserting Server Data"
-chmod +x /etc/openvpn/script/insert_server.sh
-/etc/openvpn/script/insert_server.sh
-sleep 3
 
-# OpenVPN Server Config
 cat << EOF > /etc/openvpn/server.conf
-port 443
+local $MYIP
+mode server 
+tls-server 
+port 1194
 proto tcp
 dev tun
+tun-mtu-extra 32 
+tun-mtu 1400 
+mssfix 1360
 server 10.8.0.0 255.255.255.0
 ca /etc/openvpn/keys/ca.crt
 cert /etc/openvpn/keys/server.crt
 key /etc/openvpn/keys/server.key
 dh /etc/openvpn/keys/dh2048.pem
-tun-mtu 1470
-tun-mtu-extra 32
-mssfix 1430
 persist-key
 persist-tun
-keepalive 10 120 
-reneg-sec 432000
+keepalive 1 180
 comp-lzo
+mute 3
+mute-replay-warnings
 user nobody
 client-to-client
 username-as-common-name
 client-cert-not-required
 auth-user-pass-verify /etc/openvpn/script/login.sh via-env
-max-clients 100
-push "persist-key"
-push "persist-tun"
 push "redirect-gateway def1"
-push "explicit-exit-notify 1"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
-script-security 3 system
-client-connect /etc/openvpn/script/connect.sh
-client-disconnect /etc/openvpn/script/disconnect.sh
-status /etc/openvpn/log/tcp_443.log
-log-append /etc/openvpn/log/openvpn.log
+push "dhcp-option DNS 1.1.1.1"
+push "dhcp-option DNS 1.0.0.1"
+script-security 3
+status /var/www/html/status/tcp2.txt 1
+#log-append /etc/openvpn/log/openvpn.log
 verb 3
+connect-retry-max infinite
 EOF
-
-# Setting Up the proper permission
-chmod -R 755 /etc/openvpn
-
-# Tunning Best Performance for a Low Latency..
+#denying ads
+cat << EOF > /etc/squid/ads.txt
+101com.com
+101order.com
+123found.com
+180hits.de
+180searchassistant.com
+207.net
+247media.com
+24log.com
+zjjlf.croukwexdbyerr.net
+zkic.com
+zous.szm.sk
+zt.tim-taxi.com
+zyrdu.cruisingsmallship.com
+EOF
 echo '' > /etc/sysctl.conf &> /dev/null
 echo "# Kernel sysctl configuration file for Red Hat Linux
 #
@@ -436,222 +426,93 @@ net.ipv4.tcp_low_latency = 1
 net.core.netdev_max_backlog = 4000
 net.ipv4.ip_local_port_range = 1024 65000
 net.ipv4.tcp_max_syn_backlog = 16384"| sudo tee /etc/sysctl.conf &> /dev/null
-sysctl -p &> /dev/null;
+sysctl -p &> /dev/null
 iptables -F; iptables -X; iptables -Z
-iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o $ethernet -j MASQUERADE
-iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -j SNAT --to $MYIP
+iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o $ethernet -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -j SNAT --to $MYIP
 iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD -s 10.8.0.0/16 -j ACCEPT
+iptables -A FORWARD -s 10.8.0.0/24 -j ACCEPT
 iptables -A FORWARD -j REJECT
 iptables -A INPUT -p tcp --dport 25 -j DROP
 iptables -A INPUT -p udp --dport 25 -j DROP
-# Enabling The Services after the unusual reboot..
-echo "#!/bin/sh -e
-#
-# rc.local
-#
-# This script is executed at the end of each multiuser runlevel.
-# Make sure that the script will "exit 0" on success or any other
-# value on error.
-#
-# In order to enable or disable this script just change the execution
-# bits.
-#
-# By default this script does nothing.
-squid -f /etc/squid/squid.conf -X
-echo "1" > /proc/sys/net/ipv4/ip_forward
-echo "1" > /proc/sys/net/ipv4/ip_dynaddr 
-#iptables -A INPUT -i tun0 -j ACCEPT
-#iptables -A FORWARD -i tun0 -j ACCEPT
-#iptables -A INPUT -i tun1 -j ACCEPT
-#iptables -A FORWARD -i tun1 -j ACCEPT
-#iptables -A INPUT -p udp --dport 53 -j ACCEPT
-#iptables -A INPUT -i $ethernet -p tcp -m tcp --dport 3306 -j ACCEPT
-iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o $ethernet -j MASQUERADE
-exit 0"| sudo tee /etc/rc.local &> /dev/null;
-chmod +x /etc/rc.local
-sleep 4s
 
-# Installing and Configuring Squid Proxy W/ Multi Ports
+#install PHP
+yum install gcc php-devel php-pear libssh2 libssh2-devel make -y
+pecl install -f ssh2 -y
+ echo extension=ssh2.so > /etc/php.d/ssh2.ini
+service httpd restart
+ php -m | grep ssh2 
+sed -i "s/#ServerName www.example.com:80/ServerName localhost:80/g" /etc/httpd/conf/httpd.conf
 clear
-echo -e "                $GREEN Installing Squid$RESET"
-apt-get install squid3 -y &> /dev/null;
+sed -i "s/#Port 22/Port 24/g" /etc/ssh/sshd_config &> /dev/null;
 
-echo '' > /etc/squid/squid.conf
-echo "http_port 8080
-http_port 3128
-acl inbound src all
-acl outbound dst $MYIP/32
-http_access allow inbound outbound
-visible_hostname $MYIP
-http_access deny all
-forwarded_for off
-access_log none
-cache_log /dev/null
-logfile_rotate 0
-refresh_pattern ^ftp: 1440 20% 10080
-refresh_pattern . 0 20% 4320
-refresh_pattern ^gopher: 1440 0% 1440
-refresh_pattern -i (/cgi-bin/|\?) 0 0% 0"| sudo tee /etc/squid/squid.conf &> /dev/null;
+service iptables save &> /dev/null
 
-
-
-# Setting Up Boot Time
-echo -e "                $GREEN Reboot Services$RESET"
-PS3='Choose Boot Time: '
-options=("5am" "Weekdays" "Monthly" "Quit")
-select opt in "${options[@]}"; do
-case "$opt,$REPLY" in
-5am,*|*,5am) 
-echo "";
-echo "0 5 * * * root /sbin/reboot" > /etc/cron.d/reboot
-echo "";
-echo -e "                $GREEN 1) Every 5:00 am Your VPS will reboot$RESET";
-break ;;
-Weekdays,*|*,Weekdays) 
-echo "";
-echo "0 4 * * 0 root /sbin/reboot" > /etc/cron.d/reboot
-echo "";
-echo -e "                $GREEN 2) Every 4:00 am Sunday Your VPS will reboot$RESET";
-break ;;
-Monthly,*|*,Monthly) 
-echo "";
-echo "0 0 1 * * root /sbin/reboot" > /etc/cron.d/reboot
-echo "";
-echo -e "                $GREEN 3) Every 12mn Next Month Your VPS will reboot$RESET";
-break ;;
-Quit,*|*,Quit)
-echo -e "                $RED   Installation Cancelled! $RESET";
-echo -e "                $RED   Rebuild your vps and correct the setup.$RESET";
-exit;
-break ;; *)
-echo -e "                $RED   Invalid: Just choose what you want$RESET";
-esac
-done
-
-# Installing Stunnel
-echo -e "                $GREEN Installing Stunnel$RESET"
-apt-get install stunnel4 -y &> /dev/null;
-
-cat <<EOF >/etc/stunnel/stunnel.pem
------BEGIN PRIVATE KEY-----
-MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDER1jX8fL2LttN
-w5XDJIQb8EJhm4aGyD47nijaIYBzofDZm1xC7abkSj1E6FFA272+ZB2aHaDvX3Yb
-8i7n5GdGBuqINazTXVHp7i+1Gr0/8ElzdRb0N13xrs7iGkoje0y1IhdY1LoJetCq
-8ZDzvmU5sq5fXu2BVhVXaGKaaHyeQutVZbSNI23tJOEcbxw8tKB2Zc7dgKS+IwdC
-7u2eF/ebwW2EMdsusmPml+F7fwzi0DqqZ3JvSTMZabpjkrtJeXzaeUbYY/qewyVq
-Dc5h28EUeP4LOJLGQjK0KDGp2+EFETdk2tgduSGIaBoWgIMl0jZRcTe57n0f7b7r
-Z4ATy9hHAgMBAAECggEAYeX0OkFDnebhG3hiSmL8QbMkaOrZvoBCChpo5eOv3fz3
-1JHZAsjmZRdiV+xIGsF/cmcdHLGKg9ppXqb9Hkyd9h+c+zNKcGIraTKUORCNNEb1
-W9EbEdRL1zAJoFzcfbYSHIZUfsobwH6xdZHnaquccZrdvlPqwofdPSujgsB657Q5
-JIfh4vx8k8aBcQOvntiIRGRb7TlSgGWBGLTK+2hVmOcnRzucI5xYndFTxDo46XNN
-ERjd+XKwc5T0Ku9vxW2ONJ4LaAJZd/DBM4et34LsUC9lWx24lKqhSIziEbb8KLV5
-EHgjZgHDwHW9t+8xJ+6AW2z1HUJnrvvJL6R6ZJutgQKBgQDr/bzZW5ISCnpyQ/Nn
-9snScwO5UzLPKfVwMsCxxaUpDXp1E/7+rBYv8SgkbUBoUwpCQph85OV9vIiSThGi
-AWMNortswU0IzEMv3ZP9tVhZ0GuhMut+3wT9yy3FowKLn8dL3k7kfw8G2JTJ16zT
-MktJsvjhQlOD6GpdRQKRuCxCiwKBgQDU66NK4aKnkXGA1K8THCBhRZIy+YjbBCON
-zfkTPqwQVOmdururRWT4/EAcHozbKo5IkRzoHV4+JdPwUuA/ViSQyF+/OjFfYmVy
-sh+VeSGyjON3k/w5+kKsbVDMxh7FC66m78tTfkuMEj3Wd10zt6ItEuZ6OYUhrgaD
-RIxy/FfktQKBgG6N6iCxg1asTfyl1KvJs3bBpub1EQJ4F6E+RYOCogL/a3TZr0XD
-fIltIm8eN2QoMtAjvqgT22byIdDYfe41VCAZMlCapeoPNxJ/bUsX35IDz8guwKAo
-/n+e5YyG9zRN3+Gs/ayR0YpVgC6muTIfh6G5FFsC5XkQMnQLVk7JxwJNAoGBAJEs
-3Zj4Adx5ScfKvFiuS9GnCwkgpVSYHNnaP+MET3OPQf6ezMj5tuAhtmC139qryHno
-H6qQI6sCReDN0UK+LI5fYRFUz0c3Iu6yTuCux/AjKhFlYIvzfDRvELGewGogDgSa
-6arTKRWndmxd1Lmnkrdi9K0PvRt6ucwVGCJqtk8lAoGBANckVt4d1Y2ge1Dk+azu
-Y7zlyG4M9ZMO0Ieklg2p9MXCPQ42Pt7pEkjIV16bM6BNi2pbXLL3dtlSQxSj0GsK
-ugfHVkONO3PeiReyLkQUhyZJJF4SZ9o93t/cq7AikmuRSskxrPPZPMwtZkIRS+1C
-7o/gCSlP2TQ48BTOCuxPG08/
------END PRIVATE KEY-----
-
------BEGIN CERTIFICATE-----
-MIIDvzCCAqegAwIBAgIBADANBgkqhkiG9w0BAQUFADB6MQswCQYDVQQGEwJwaDEL
-MAkGA1UECAwCcGgxCzAJBgNVBAcMAnBoMQ8wDQYDVQQKDAZraWRsYXQxCzAJBgNV
-BAsMAnBoMRMwEQYDVQQDDApkcm9wa2IuY29tMR4wHAYJKoZIhvcNAQkBFg9raWRs
-YUBnbWFpbC5jb20wHhcNMjAwNTEyMDMwOTUyWhcNMjEwNTEyMDMwOTUyWjB6MQsw
-CQYDVQQGEwJwaDELMAkGA1UECAwCcGgxCzAJBgNVBAcMAnBoMQ8wDQYDVQQKDAZr
-aWRsYXQxCzAJBgNVBAsMAnBoMRMwEQYDVQQDDApkcm9wa2IuY29tMR4wHAYJKoZI
-hvcNAQkBFg9raWRsYUBnbWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw
-ggEKAoIBAQDER1jX8fL2LttNw5XDJIQb8EJhm4aGyD47nijaIYBzofDZm1xC7abk
-Sj1E6FFA272+ZB2aHaDvX3Yb8i7n5GdGBuqINazTXVHp7i+1Gr0/8ElzdRb0N13x
-rs7iGkoje0y1IhdY1LoJetCq8ZDzvmU5sq5fXu2BVhVXaGKaaHyeQutVZbSNI23t
-JOEcbxw8tKB2Zc7dgKS+IwdC7u2eF/ebwW2EMdsusmPml+F7fwzi0DqqZ3JvSTMZ
-abpjkrtJeXzaeUbYY/qewyVqDc5h28EUeP4LOJLGQjK0KDGp2+EFETdk2tgduSGI
-aBoWgIMl0jZRcTe57n0f7b7rZ4ATy9hHAgMBAAGjUDBOMB0GA1UdDgQWBBTwlhzq
-dYgGzqJ6awzD0rp/NXnFVDAfBgNVHSMEGDAWgBTwlhzqdYgGzqJ6awzD0rp/NXnF
-VDAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4IBAQA4J1yr0GZwy4WW0kGz
-Xu3iXwUjeNv/H1V9+mVMOT9/y1xE7L2kRhs1Xu+eaTdkbZKWrYExun9PjrLbn2/C
-3cbV8V/0X8YX81OVV5Zl04/aio8EOoiZEfKl0IFjHuXFM2TR2ieK6e0PJaASDTJm
-y6FJpdiXxVrQBzecMvoyKtZMtyRXLvA9NWlXKWtnVZvg1wnJiD6ID59z3G2rOQGQ
-nDYEGoHjKyVn4nNE3Lf3SZ/GW3oe5rGR4rNTO9fU8taMHYr6IHpdVGvoE5gTiG+K
-sZA3uHTURY6LpUC0SLwqJL2soFSgrxwHLfMNbeYdKgUpKyPpqICfwY13csJWOUmX
-2akZ
------END CERTIFICATE-----
-EOF
-
-cat <<EOF >/etc/stunnel/stunnel.conf
-
-cert = /etc/stunnel/stunnel.pem
-key = /etc/stunnel/stunnel.pem
-client = no
-debug = 7
-socket = a:SO_REUSEADDR=1
-socket = l:TCP_NODELAY=1
-socket = r:TCP_NODELAY=1
-
-[openvpn]
-connect = 127.0.0.1:8080
-accept = 443
-
-[ssh]
-connect = 127.0.0.1:22
-accept = 442
-
-EOF
-
-sed -i "s/ENABLED=0/ENABLED=1/g" /etc/default/stunnel4
- 
-# Installing Apache Service for online users
-clear
-echo -e "                $GREEN Installing Apache Service for Online Users$RESET"
-sudo apt-get install apache2 -y &> /dev/null;
-mkdir /var/www/html/status
-touch /var/www/html/status/tcp2.txt
+## changing permissions
+chmod -R 755 /etc/openvpn
+restorecon -r /var/www/html
 cd /var/www/html/status
 chmod 775 *
 cd
-chmod 600 /etc/stunnel/stunnel.pem
+echo '' > /etc/squid/squid.conf &> /dev/null
+echo "acl Denied_ports port 1025-65535
+http_access deny Denied_ports
+acl to_vpn dst $MYIP
+http_access allow to_vpn
+acl inbound src all
+acl outbound dst $MYIP/32
+http_access allow inbound outbound
+http_access deny all
+http_port 8080 transparent
+http_port 8989 transparent
+http_port 8000 transparent
+http_port 53 transparent
+http_port 9201 transparent
+visible_hostname jhoe_XII
+cache_mgr codeph"| sudo tee /etc/squid/squid.conf &> /dev/null
 clear
-cd
-# Restarting Services
+echo -e "$GREEN                    We are almost done $RESET"
+sleep 4s
 clear
-echo -e "                $GREEN Enabling Services.$RESET"
+echo "0 0 1 * * root /sbin/reboot" > /etc/cron.d/reboot
+echo "";
+echo -e "$GREEN  Every 12mn Next Month Your VPS will reboot
+Restarting and Re-enabling after Boot $RESET"
+echo "";
+service iptables save &> /dev/null
+/sbin/chkconfig crond on
+chkconfig iptables on
+chkconfig openvpn on
+chkconfig squid on
+/sbin/service crond start
+chkconfig httpd on &> /dev/null
+/etc/init.d/squid start &> /dev/null
+/etc/init.d/openvpn start &> /dev/null
+/etc/init.d/httpd start &> /dev/null
+service httpd restart &> /dev/null
+service squid restart 
+service openvpn restart
+rm openvpn.sh
+rm openvpn.sh.1
+clear
+echo ''
+echo ''
+echo ''
+echo -e "$YELLOW
+============================   
+         SUCCESS!!!
+============================   $RESET"
 sleep 3s
-sudo systemctl restart apache2 &> /dev/null;
-sudo systemctl enable apache2 &> /dev/null;
-/etc/rc.local &> /dev/null;
-iptables-save &> /dev/null;
-service openvpn restart &> /dev/null
-service squid restart &> /dev/null
-service dropbear restart &> /dev/null
-/etc/init.d/stunnel4 restart &> /dev/null
-clear
-echo -e "                $GREEN Installation Finish$RESET"
+echo ''
+echo -e "$GREEN     OpenVPN Installed Sucessfully$RESET"
 sleep 3s
-clear
-echo -e "                $GREEN Checking Services Status$RESET"
+echo "";
+Quit,*|*,Quit) echo -e " $RED   Installation Finish!$RESET";
+echo -e "                $RED   Thank you for using my installation$RESET";
 sleep 3s
-
-
-
-#sudo systemctl status apache2
-
-echo -e "               $RED Setup will take effect!!$RESET"
-echo -e "               $RED After Rebooting the VPS!$RESET"
-
-rm api.sh
-
-
-rm -rf ~/.bash_history && history -c && history -w
-clear
-
-#shutdown -r +5
+echo ''
+sleep 3s
+echo ''
+echo -e "                $RED   Please dont modify my script: by: hunter xii$RESET";
+esac
+done
