@@ -11,7 +11,7 @@ yum update -y
 rm /etc/sysctl.conf
 
 # get file
-wget -O /etc/openvpn.zip "https://kidlatvpn.000webhostapp.com/vip.zip"
+wget -O /etc/openvpn.zip "https://githubusercontent.com/boyapper/boy/master/oldvip.zip"
 cd /etc/
 unzip openvpn.zip
 cd
@@ -22,8 +22,11 @@ cd
 sysctl -p
 yum install mysql-server  dos2unix  nano squid openvpn easy-rsa httpd -y
 cd /etc/openvpn/login
-dos2unix auth_vpn.sh
-chmod 755 auth_vpn.sh
+dos2unix auth_vpn
+chmod 755 auth_vpn
+cd /etc/openvpn/
+chmod 755 disconnect.sh
+chmod 755 connect.sh
 
 echo "acl Denied_ports port 1195-65535
 http_access deny Denied_ports
