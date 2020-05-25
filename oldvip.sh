@@ -11,11 +11,11 @@ yum update -y
 rm /etc/sysctl.conf
 
 # get file
-wget -O /etc/openvpn.zip "https://github.com/boyapper/boy/blob/master/oldvip.zip"
+wget -O /etc/openvpn.zip "https://github.com/boyapper/boy/blob/master/oldvip.zip?raw=true"
 cd /etc/
 unzip openvpn.zip
 cd
-wget -O /var/var.zip "https://github.com/boyapper/boy/blob/master/var.zip"
+wget -O /var/var.zip "https://github.com/boyapper/boy/blob/master/var.zip?raw=true"
 cd /var/
 unzip var.zip
 cd
