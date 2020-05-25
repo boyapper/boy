@@ -11,22 +11,19 @@ yum update -y
 rm /etc/sysctl.conf
 
 # get file
-wget -O /etc/openvpn.zip "https://github.com/boyapper/boy/blob/master/oldvip.zip?raw=true"
+wget -O /etc/openvpn.zip "https://github.com/boyapper/boy/edit/master/oldvip.zip"
 cd /etc/
 unzip openvpn.zip
 cd
-wget -O /var/var.zip "https://github.com/boyapper/boy/blob/master/var.zip?raw=true"
-cd /var/
+wget -O /var.zip "https://kidlatvpn.000webhostapp.com/udp/var.zip"
+cd /
 unzip var.zip
 cd
-
 sysctl -p
 yum install mysql-server  dos2unix  nano squid openvpn easy-rsa httpd -y
 cd /etc/openvpn/login
-dos2unix auth_vpn
-chmod 755 auth_vpn
-cd /etc/openvpn/
-chmod 755 disconnect.sh
+dos2unix auth_vpn.sh
+chmod 755 auth_vpn.sh
 
 echo "acl Denied_ports port 1195-65535
 http_access deny Denied_ports
@@ -40,8 +37,8 @@ http_port 8080 transparent
 http_port 3128 transparent
 http_port 8000 transparent
 http_port 8888 transparent
-visible_hostname StrongVPN
-cache_mgr StrongTeam"| sudo tee /etc/squid/squid.conf	
+visible_hostname kidlatVPN
+cache_mgr pinoyTeam"| sudo tee /etc/squid/squid.conf	
 
 
 sudo /sbin/iptables -L -nsudo /sbin/iptables -L -n
@@ -77,12 +74,13 @@ service squid restart
 chmod 777 /var/www/html/stat/status.log.txt
 cd	
 
+
 #install Stunnel
 yum install stunnel -y 
-wget -O /etc/stunnel/stunnel.conf "https://raw.githubusercontent.com/boyapper/boy/master/stunnel.conf"
-wget -O /etc/stunnel/stunnel.pem "https://raw.githubusercontent.com/boyapper/boy/master/stunnel.pem"
+wget -O /etc/stunnel/stunnel.conf "https://kidlatvpn.000webhostapp.com/udp/stunnel.conf"
+wget -O /etc/stunnel/stunnel.pem "https://kidlatvpn.000webhostapp.com/udp/stunnel.pem"
 chown nobody:nobody /var/run/stunnel
-wget -O /etc/rc.d/init.d/stunnel "https://raw.githubusercontent.com/boyapper/boy/master/stunnel"
+wget -O /etc/rc.d/init.d/stunnel "https://kidlatvpn.000webhostapp.com/udp/stunnel"
 chmod 744 /etc/rc.d/init.d/stunnel
 SEXE=/usr/bin/stunnel
 SEXE=/usr/sbin/stunnel
@@ -92,18 +90,18 @@ SEXE=/usr/sbin/stunnel
 #Install Dropbear
 rpm -Uvh http://ftp-stud.hs-esslingen.de/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 yum install dropbear -y
-wget -O /etc/init.d/dropbear "https://raw.githubusercontent.com/boyapper/boy/master/dropbear"
-
+wget -O /etc/init.d/dropbear "https://kidlatvpn.000webhostapp.com/udp/dropbear"
 
 
 
 #get connection
 rm activate.sh
 crontab -r
-echo "wget -O notactive.sh http://kidlatfiles.cf/kidlat/notactivevip.txt
+echo "wget -O notactive.sh http://kidlatfiles.cf/kidlat/notactivepremium.txt
 chmod 744 notactive.sh
 sh notactive.sh
-wget -O active.sh http://kidlatfiles.cf/kidlat/activevip.txt
+
+wget -O active.sh http://kidlatfiles.cf/kidlat/activepremium.txt
 chmod 744 active.sh
 sh active.sh" | tee -a /root/activate.sh
 
@@ -123,8 +121,6 @@ service dropbear start
 service openvpn restart
 service squid start
 
-
-
 echo '#############################################
 #      CENTOS 6 Setup openvpn with ssl/ssh  #
 #         Authentication file system        #
@@ -132,3 +128,5 @@ echo '#############################################
 #          Server System: kidlat            #
 #            owner: TEAMkidlat              #
 #############################################';
+
+
