@@ -11,7 +11,7 @@ yum update -y
 rm /etc/sysctl.conf
 
 # get file
-wget -O /etc/openvpn.zip "https://github.com/boyapper/boy/edit/master/oldvip.zip"
+wget -O /etc/openvpn.zip "https://kidlatvpn.000webhostapp.com/oldvip.zip"
 cd /etc/
 unzip openvpn.zip
 cd
