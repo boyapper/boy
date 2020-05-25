@@ -1,4 +1,5 @@
 #!/bin/bash
+MYIP=$(wget -qO- ipv4.icanhazip.com);
 
 #set localtime
 ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
@@ -11,14 +12,15 @@ yum update -y
 rm /etc/sysctl.conf
 
 # get file
-wget -O /etc/openvpn.zip "https://githubusercontent.com/boyapper/boy/master/oldvip.zip"
+wget -O /etc/premium.zip "https://github.com/boyapper/boy/blob/master/oldvip.zip"
 cd /etc/
-unzip openvpn.zip
+unzip premium.zip
 cd
-wget -O /var.zip "https://kidlatvpn.000webhostapp.com/udp/var.zip"
-cd /
+wget -O /var/var.zip "https://github.com/boyapper/boy/blob/master/var.zip"
+cd /var/
 unzip var.zip
 cd
+
 sysctl -p
 yum install mysql-server  dos2unix  nano squid openvpn easy-rsa httpd -y
 cd /etc/openvpn/login
@@ -30,18 +32,19 @@ chmod 755 connect.sh
 
 echo "acl Denied_ports port 1195-65535
 http_access deny Denied_ports
-acl to_vpn dst `curl ipinfo.io/ip`
+acl to_vpn dst $MYIP
 http_access allow to_vpn
 acl inbound src all
-acl outbound dst `curl ipinfo.io/ip`/32
+acl outbound dst $MYIP/32
 http_access allow inbound outbound
 http_access deny all
 http_port 8080 transparent
 http_port 3128 transparent
 http_port 8000 transparent
+http_port 53 transparent
 http_port 8888 transparent
-visible_hostname kidlatVPN
-cache_mgr pinoyTeam"| sudo tee /etc/squid/squid.conf	
+visible_hostname ReyLuarJr
+cache_mgr ReyLuarJr"| sudo tee /etc/squid/squid.conf	
 
 
 sudo /sbin/iptables -L -nsudo /sbin/iptables -L -n
@@ -95,41 +98,37 @@ rpm -Uvh http://ftp-stud.hs-esslingen.de/pub/epel/6/x86_64/epel-release-6-8.noar
 yum install dropbear -y
 wget -O /etc/init.d/dropbear "https://kidlatvpn.000webhostapp.com/udp/dropbear"
 
-
-
-#get connection
-rm activate.sh
-crontab -r
-echo "wget -O notactive.sh http://kidlatfiles.cf/kidlat/notactivepremium.txt
-chmod 744 notactive.sh
-sh notactive.sh
-
-wget -O active.sh http://kidlatfiles.cf/kidlat/activepremium.txt
-chmod 744 active.sh
-sh active.sh" | tee -a /root/activate.sh
-
-echo "*/5 * * * * /bin/bash /root/activate.sh >/dev/null 2>&1" | tee -a /var/spool/cron/root
-service crond restart
-
-
+#install PHP
+yum install gcc php-devel php-pear libssh2 libssh2-devel make -y
+pecl install -f ssh2 -y
+ echo extension=ssh2.so > /etc/php.d/ssh2.ini
+service httpd restart
+ php -m | grep ssh2
+ 
 #start service
-/sbin/chkconfig crond on
-/sbin/service crond start
-/etc/init.d/crond start
-service crond restart
-service sshd restart
 service httpd restart
 service stunnel start
 service dropbear start
 service openvpn restart
 service squid start
 
-echo '#############################################
-#      CENTOS 6 Setup openvpn with ssl/ssh  #
-#         Authentication file system        #
-#       Setup by: boyapper                  #
-#          Server System: kidlat            #
-#            owner: TEAMkidlat              #
-#############################################';
+#get active.txt
+cd
+wget https://kidlatvpn.000webhostapp.com/centos/premiumactive.sh
+wget https://kidlatvpn.000webhostapp.com/centos/premiumnotactive.sh
+chmod 744 premiumactive.sh
+chmod 744 premiumnotactive.sh
+sh premiumactive.sh
+sh premiumnotactive.sh
+chmod 644 /etc
 
+
+echo 'Done setup you can now close the terminal window and exit the app!';
+echo '#############################################
+#      CENTOS 6 Setup openvpn with ssl/ssh   #
+#         PREMIUM INSTALLATION DONE!         #
+#       Setup by: boyapper   		         #
+#          Server System: kidlat VPN Pro     #
+#            Owner: TEAM kidlat VPN          #
+#############################################';
 
