@@ -220,7 +220,7 @@ EOF
 
 cat << EOF > /etc/openvpn/server.conf
 ##protocol port
-port 1194
+port 443
 proto tcp
 dev tun
  
