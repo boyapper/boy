@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ##Database Details
-dbhost='80.332.223.211';
-dbuser='demo111';
-dbpass='1234561234577';
-dbname='demo111';
+dbhost='185.61.137.168';
+dbuser='cybertea_old';
+dbpass='jan022011';
+dbname='cybertea_old';
 dbport='3306';
 
 ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
