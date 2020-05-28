@@ -2,10 +2,10 @@
 error_reporting(E_ERROR | E_PARSE);
 ini_set('display_errors', '1');
 
-$DB_host = 'mysql1.blazingfast.io';
-$DB_user = 'cybertea_kidlat';
+$DB_host = '185.61.137.168';
+$DB_user = 'cybertea_old';
 $DB_pass = 'jan022011';
-$DB_name = 'cybertea_kidlat';
+$DB_name = 'cybertea_old';
 
 $mysqli = new MySQLi($DB_host,$DB_user,$DB_pass,$DB_name);
 if ($mysqli->connect_error) {
