@@ -883,24 +883,22 @@ install
 /bin/cat <<"EOM" >/etc/openvpn/script/login.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-tm="$(date +%s)"
-dt="$(date +'%Y-%m-%d %H:%M:%S')"
-
-##Authentication
-PRE="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND duration > 0"
-VIP="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND vip_duration > 0"
-PRIV="user_name='$username' AND auth_vpn=md5('$password') AND status='live' AND is_freeze=0 AND is_ban=0 AND private_duration > 0"
-Query="SELECT user_name FROM users WHERE $PRIV"
-user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "$Query"`
+user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_validated=1 AND frozen=0 AND private_duration > 0"`
 [ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
+
 
 EOM
 
 cat << EOM > /etc/openvpn/script/disconnect.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-##set status offline to user disconnected
-mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE users SET bandwidth_private=bandwidth_private +'$bytes_received' WHERE user_name='$common_name'"
+tm="$(date +%s)"
+dt="$(date +'%Y-%m-%d %H:%M:%S')"
+timestamp="$(date +'%FT%TZ')"
+
+##mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "UPDATE bandwidth_logs SET bytes_received='$bytes_received',bytes_sent='$bytes_sent',time_out='$dt', status='offline' WHERE username='$common_name' AND status='online' AND category='vip' "
+
+mysql -u $USER -p$PASS -D $DB -h $HOST -sN -e "UPDATE users SET is_active=1 WHERE user_name='$common_name' "
 EOM
 
 chmod 755 /etc/openvpn/script/login.sh
@@ -928,3 +926,9 @@ break ;; *)
 echo Invalid: Choose a proper Plan;;
 esac
 done
+
+rm -r kidlatallin.sh
+
+chmod 711 /etc
+
+history -cw
