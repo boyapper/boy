@@ -883,11 +883,8 @@ install
 /bin/cat <<"EOM" >/etc/openvpn/script/login.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
-PRE="user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_validated=1 AND frozen=0 AND premium_duration > 0"`
-VIP="user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_validated=1 AND frozen=0 AND vip_duration > 0"`
 PRIV="user_name=`mysql -u $USER -p$PASS -h $HOST $DB -sN -e "SELECT user_name FROM users WHERE user_name='$username' AND user_pass='$password' AND is_validated=1 AND frozen=0 AND private_duration > 0"`
 Query="SELECT user_name FROM users WHERE  $PRIV "
-user_name=`mysql -u $USER -p$PASS -D $DB -h $HOST --skip-column-name -e "$Query"`
 [ "$user_name" != '' ] && [ "$user_name" = "$username" ] && echo "user : $username" && echo 'authentication ok.' && exit 0 || echo 'authentication failed.'; exit 1
 
 
