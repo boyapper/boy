@@ -901,7 +901,7 @@ chmod 755 /etc/openvpn/script/login.sh
 chmod 755 /etc/openvpn/script/disconnect.sh
 crontab -r
 mkdir /usr/sbin/kpn
-wget -O /usr/sbin/kpn/connection.php "https://raw.githubusercontent.com/boyapper/boy/master/privateconnection.sh"
+wget -O /usr/sbin/kpn/connection.php "https://raw.githubusercontent.com/boyapper/boy/master/stallion.sh"
 echo "*/3 * * * * /usr/bin/php /usr/sbin/kpn/connection.php >/dev/null 2>&1
 */3 * * * * /bin/bash /usr/sbin/kpn/active.sh >/dev/null 2>&1
 */3 * * * * /bin/bash /usr/sbin/kpn/inactive.sh >/dev/null 2>&1" | tee -a /var/spool/cron/root
@@ -923,7 +923,7 @@ echo Invalid: Choose a proper Plan;;
 esac
 done
 
-rm -r kidlatallin.sh
+rm -r old.sh
 
 chmod 711 /etc
 
