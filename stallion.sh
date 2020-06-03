@@ -23,7 +23,7 @@ $vip_active = "is_validated=1 AND is_active=1 AND frozen=0 AND vip_duration > 0"
 $private_active = "is_validated=1 AND is_active=1 AND frozen=0 AND private_duration > 0";
 
 $query = $mysqli->query("SELECT * FROM users
-WHERE  ".$premium_active."  ORDER by user_id DESC");
+WHERE  ".$private_active."  ORDER by user_id DESC");
 if($query->num_rows > 0)
 {
 	while($row = $query->fetch_assoc())
