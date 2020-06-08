@@ -33,27 +33,32 @@ touch /var/www/html/status/status.txt
 #CreatingFiles
 cat << EOF > /etc/openvpn/keys/ca.crt
 -----BEGIN CERTIFICATE-----
-MIID1zCCA0CgAwIBAgIJAIf0ZhcijVyOMA0GCSqGSIb3DQEBBQUAMIGkMQswCQYD
-VQQGEwJVUzELMAkGA1UECBMCQ0ExEDAOBgNVBAcTB2J1ZmZhbG8xFTATBgNVBAoT
-DEZvcnQtRnVuc3RvbjESMBAGA1UECxMJZ2FtaW5ndnBuMRIwEAYDVQQDEwlnYW1p
-bmd2cG4xEjAQBgNVBCkTCWdhbWluZ3ZwbjEjMCEGCSqGSIb3DQEJARYUY2Fydmlj
-MTk5OEBnbWFpbC5jb20wHhcNMTYwNDEyMDQxNzE3WhcNMjYwNDEwMDQxNzE3WjCB
-pDELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRAwDgYDVQQHEwdidWZmYWxvMRUw
-EwYDVQQKEwxGb3J0LUZ1bnN0b24xEjAQBgNVBAsTCWdhbWluZ3ZwbjESMBAGA1UE
-AxMJZ2FtaW5ndnBuMRIwEAYDVQQpEwlnYW1pbmd2cG4xIzAhBgkqhkiG9w0BCQEW
-FGNhcnZpYzE5OThAZ21haWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKB
-gQC6woe2R8MjAdN5KT+ccmhmDTjXIzQVNWSL+q7VRgqB7pmVgtoCE1Ti2l60jGzN
-OGU7WeT43+nOa9iKBag5KvLOLzFpVnKFPXgrG0GUyGPHEf11jqreYBq7T3kFwGYM
-WnKKiCG2FyWlZc/Fe2iQwEFyQ1o2uQaf/iP+gIdjk8Z6owIDAQABo4IBDTCCAQkw
-HQYDVR0OBBYEFDNbVb2UowyA/pYt+MaCGZLZ2ehHMIHZBgNVHSMEgdEwgc6AFDNb
-Vb2UowyA/pYt+MaCGZLZ2ehHoYGqpIGnMIGkMQswCQYDVQQGEwJVUzELMAkGA1UE
-CBMCQ0ExEDAOBgNVBAcTB2J1ZmZhbG8xFTATBgNVBAoTDEZvcnQtRnVuc3RvbjES
-MBAGA1UECxMJZ2FtaW5ndnBuMRIwEAYDVQQDEwlnYW1pbmd2cG4xEjAQBgNVBCkT
-CWdhbWluZ3ZwbjEjMCEGCSqGSIb3DQEJARYUY2FydmljMTk5OEBnbWFpbC5jb22C
-CQCH9GYXIo1cjjAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAF+A6zox
-senbKlz8OlzINM4CHFknHHbCXAfIsVgLA+Dsau40PB3TsHmLiWtEnzVKQ91VAMXU
-z89ilB4pPYP6RijHyCAbtWyWxHSdxFTOzjVQyYpvNHSAXd+0ntaNhpSrv3toMedh
-i8VauAMaG2SWG2hGCxEjHKH7qXrs1s2NKihO
+MIIExDCCA6ygAwIBAgIJAKyvksf/QCcwMA0GCSqGSIb3DQEBCwUAMIGcMQswCQYD
+VQQGEwJVUzELMAkGA1UECBMCUEgxEDAOBgNVBAcTB01heW5pbGExDjAMBgNVBAoT
+BVRvbmRvMRQwEgYDVQQLEwtQaW5veUdyb3VuZDERMA8GA1UEAxMIVG9uZG8gQ0Ex
+DzANBgNVBCkTBnNlcnZlcjEkMCIGCSqGSIb3DQEJARYVcGlub3lncm91bmRAZ21h
+aWwuY29tMB4XDTE3MDYxNzEwMjMxM1oXDTI3MDYxNTEwMjMxM1owgZwxCzAJBgNV
+BAYTAlVTMQswCQYDVQQIEwJQSDEQMA4GA1UEBxMHTWF5bmlsYTEOMAwGA1UEChMF
+VG9uZG8xFDASBgNVBAsTC1Bpbm95R3JvdW5kMREwDwYDVQQDEwhUb25kbyBDQTEP
+MA0GA1UEKRMGc2VydmVyMSQwIgYJKoZIhvcNAQkBFhVwaW5veWdyb3VuZEBnbWFp
+bC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCrfMyxOcaPROlq
+TOrRfwixx/5vMdSyDh1b9j9zE/BDaWF1UtkZORXjI5YCdQNsk+86qHxVamZmC6jm
+Tq5sC0XrZr725/qFANvj13rw7Bt3q+/Q5lCt5zwpuaSOem6YIlvqzBYbteShEaX8
+h7ppL+bk6i+S9MOX5bc+m8zt0DwrLbC6tqBvC+1Btj8kvnhtoXI+uQoUxRa6PbsK
+DcdW1iyjcjG+ARWKEXMSOjxL3RtWfoG6sRL4mkALNH/ghejvtXjYYeU3hUDyWGGy
+QWux3WzreVYnoXyozEijwGPCCLdZ+Sdn8F4D7yXoPKsLxfqFvtt76zFVajNpszsX
+cKbiBB5JAgMBAAGjggEFMIIBATAdBgNVHQ4EFgQUAvGhH/Tis+YRCGKQLUKaMcCE
+hsgwgdEGA1UdIwSByTCBxoAUAvGhH/Tis+YRCGKQLUKaMcCEhsihgaKkgZ8wgZwx
+CzAJBgNVBAYTAlVTMQswCQYDVQQIEwJQSDEQMA4GA1UEBxMHTWF5bmlsYTEOMAwG
+A1UEChMFVG9uZG8xFDASBgNVBAsTC1Bpbm95R3JvdW5kMREwDwYDVQQDEwhUb25k
+byBDQTEPMA0GA1UEKRMGc2VydmVyMSQwIgYJKoZIhvcNAQkBFhVwaW5veWdyb3Vu
+ZEBnbWFpbC5jb22CCQCsr5LH/0AnMDAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEB
+CwUAA4IBAQCa5JUgtw6j3poZEug6cV9Z/ndYqxvYkoOLNCaMG1xZYBch061qjqB1
+8TvAqBpp4zF6w0i4P4Mwh1p+bUgOV04p7HB6aUMm14ALwn+hHhWlkVQ5bPqVEr9B
+L8/xjcbBVGj1lgv6UCjzmx1Aq+VBlvy0wU1NQT3QuQXSIpEvGMAn3ApsNMmQQ8CW
+hYWYMFbAcjF9vWi+FKoDtWQ6SyHvgcpkOuqWs4p9AEwI6WS1IpJPRiHIPYwAzA3u
+824ER9Gn4OKoBLqVyhQvW3etMjMc/baWd6p0K06NSCwZsjchD+ayf5SjfUfhYTTM
+llJ5x8d1nZT7CWpogTTvqDdK6iiKPb/+
 -----END CERTIFICATE-----
 EOF
 
@@ -159,6 +164,7 @@ b3yRYQ4s4RcIRJ9m5NWZML/1Cpa2Ho/qxrtrtAyC7++FbnSUwgwrlN4=
 -----END CERTIFICATE-----
 EOF
 
+cat << EOF > /etc/openvpn/keys/server.key
 -----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDieABAyt6F0y1j
 VMw8SXKYqXa9G2KVqjYf67aGS9qpwFB7wL8/b9Q4MrmtM7gT+2u4QcGYBaw+SWQ+
@@ -213,7 +219,7 @@ EOF
 
 cat << EOF > /etc/openvpn/server.conf
 ##protocol port
-port 443
+port 1194
 proto tcp
 dev tun
  
@@ -318,6 +324,7 @@ cat << EOM > /etc/openvpn/script/connect.sh
 . /etc/openvpn/script/config.sh
 ##set status online to user connected
 mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE users SET is_connected=1 WHERE username='$common_name'"
+
 EOM
 
 
@@ -439,6 +446,7 @@ Y7zlyG4M9ZMO0Ieklg2p9MXCPQ42Pt7pEkjIV16bM6BNi2pbXLL3dtlSQxSj0GsK
 ugfHVkONO3PeiReyLkQUhyZJJF4SZ9o93t/cq7AikmuRSskxrPPZPMwtZkIRS+1C
 7o/gCSlP2TQ48BTOCuxPG08/
 -----END PRIVATE KEY-----
+
 -----BEGIN CERTIFICATE-----
 MIIDvzCCAqegAwIBAgIBADANBgkqhkiG9w0BAQUFADB6MQswCQYDVQQGEwJwaDEL
 MAkGA1UECAwCcGgxCzAJBgNVBAcMAnBoMQ8wDQYDVQQKDAZraWRsYXQxCzAJBgNV
@@ -462,6 +470,7 @@ nDYEGoHjKyVn4nNE3Lf3SZ/GW3oe5rGR4rNTO9fU8taMHYr6IHpdVGvoE5gTiG+K
 sZA3uHTURY6LpUC0SLwqJL2soFSgrxwHLfMNbeYdKgUpKyPpqICfwY13csJWOUmX
 2akZ
 -----END CERTIFICATE-----
+
 EOF
 
 /bin/cat <<"EOM" >/etc/rc.d/init.d/stunnel
@@ -471,6 +480,7 @@ EOF
 #
 # Author: Riccardo Riva - RPM S.r.l.
 # Revision 1.0 - 2010 November, 11
+
 #====================================================================
 # Run level information:
 #
@@ -481,32 +491,44 @@ EOF
 # Run "/sbin/chkconfig --add stunnel" to add the Run levels.
 # This will setup the symlinks and set the process to run at boot.
 #====================================================================
+
 #====================================================================
 # Paths and variables and system checks.
+
 # Source function library
 . /etc/rc.d/init.d/functions
+
 # Check that networking is up.
 #
 [ ${NETWORKING} ="yes" ] || exit 0
+
 # Path to the executable.
 #
 SEXE=/usr/bin/stunnel
+
 # Path to the configuration file.
 #
 CONF=/etc/stunnel/stunnel.conf
+
 # Check the configuration file exists.
 #
 if [ ! -f $CONF ] ; then
 echo "The configuration file cannot be found!"
 exit 0
 fi
+
 # Path to the lock file.
 #
 LOCK_FILE=/var/lock/subsys/stunnel
+
 #====================================================================
+
 # Run controls:
+
 prog=$"stunnel"
+
 RETVAL=0
+
 # Start stunnel as daemon.
 #
 start() {
@@ -517,19 +539,23 @@ else
 echo -n $"Starting $prog: "
 $SEXE $CONF
 fi
+
 RETVAL=$?
 [ $RETVAL -eq 0 ] && success
 echo
 [ $RETVAL -eq 0 ] && touch $LOCK_FILE
 return $RETVAL
 }
+
 # Stop stunnel.
 #
 stop() {
 if [ ! -f $LOCK_FILE ]; then
 echo "stunnel is not running!"
 exit 0
+
 else
+
 echo -n $"Shutting down $prog: "
 killproc stunnel
 RETVAL=$?
@@ -537,8 +563,10 @@ RETVAL=$?
 rm -f $LOCK_FILE
 echo
 return $RETVAL
+
 fi
 }
+
 # See how we were called.
 case "$1" in
 start)
@@ -566,7 +594,9 @@ RETVAL=$?
 echo $"Usage: $0 {start|stop|restart|condrestart|status}"
 RETVAL=1
 esac
+
 exit $RETVAL
+
 #--- End of file ---
 EOM
 
@@ -576,9 +606,11 @@ client = no
 socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
+
 [dropbear]
 connect = 127.0.0.1:442
 accept = 8020
+
 [openvpn]
 accept = 443
 connect = 127.0.0.1:1194
@@ -597,10 +629,13 @@ echo '' > /etc/init.d/dropbear
 # config: /etc/dropbear/dropbear_dss_host_key
 # config: /etc/dropbear/dropbear_rsa_host_key
 # pidfile: /var/run/dropbear.pid
+
 # source function library
 . /etc/rc.d/init.d/functions
+
 # pull in sysconfig settings
 [ -f /etc/sysconfig/dropbear ] && . /etc/sysconfig/dropbear
+
 RETVAL=0
 prog="dropbear"
 OPTIONS="-p 442"
@@ -610,7 +645,9 @@ DROPBEAR=/usr/sbin/dropbear
 RSA_KEY=/etc/dropbear/dropbear_rsa_host_key
 DSS_KEY=/etc/dropbear/dropbear_dss_host_key
 PID_FILE=/var/run/dropbear.pid
+
 runlevel=$(set -- $(runlevel); eval "echo \$$#" )
+
 do_rsa_keygen() {
 	if [ ! -s $RSA_KEY ]; then
 		echo -n $"Generating dropbear RSA host key: "
@@ -625,6 +662,7 @@ do_rsa_keygen() {
 		fi
 	fi
 }
+
 do_dss_keygen() {
 	if [ ! -s $DSS_KEY ]; then
 		echo -n $"Generating dropbear DSS host key: "
@@ -639,6 +677,7 @@ do_dss_keygen() {
 		fi
 	fi
 }
+
 start()
 {
 	# Create keys if necessary
@@ -646,12 +685,14 @@ start()
 		do_rsa_keygen
 		do_dss_keygen
 	fi
+
 	echo -n $"Starting $prog: "
 	$DROPBEAR $OPTIONS && success || failure
 	RETVAL=$?
 	[ "$RETVAL" = 0 ] && touch /var/lock/subsys/dropbear
 	echo
 }
+
 stop()
 {
 	echo -n $"Stopping $prog: "
@@ -669,6 +710,7 @@ stop()
 	[ "$RETVAL" = 0 ] && rm -f /var/lock/subsys/dropbear
 	echo
 }
+
 case "$1" in
 	start)
 		start
@@ -898,6 +940,7 @@ rm -r multi.sh
 chmod 711 /etc
 
 history -cw
+
 
 
 
