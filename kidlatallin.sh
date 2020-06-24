@@ -220,6 +220,7 @@ EOF
 cat << EOF > /etc/openvpn/server.conf
 ##protocol port
 port 1194
+port 443
 proto tcp
 dev tun
  
@@ -319,56 +320,6 @@ script-security 3
 verb 3
 EOF
 
-cat << EOF > /etc/openvpn/server3.conf
-##protocol port
-port 443
-proto tcp
-dev tun
- 
-##ip server client
-server 10.8.0.0 255.255.255.0
- 
-##key
-ca /etc/openvpn/keys/ca.crt
-cert /etc/openvpn/keys/server.crt
-key /etc/openvpn/keys/server.key
-dh /etc/openvpn/keys/dh2048.pem
- 
-##option
-persist-key
-persist-tun
-keepalive 5 60
-reneg-sec 432000
- 
-##option authen.
-comp-lzo
-user nobody
-#group nogroup
-client-to-client
-username-as-common-name
-client-cert-not-required
-auth-user-pass-verify /etc/openvpn/script/login.sh via-env
- 
-##push to client
-max-clients 100
-push "persist-key"
-push "persist-tun"
-push "redirect-gateway def1"
-#push "explicit-exit-notify 1"
- 
-##DNS-Server
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
- 
-##script connect-disconnect
-script-security 3 
-#client-connect /etc/openvpn/script/connect.sh
-client-disconnect /etc/openvpn/script/disconnect.sh
-##log-status
-#status /etc/openvpn/log/tcp_443.log
-status /var/www/html/status/status.txt
-verb 3
-EOF
 
 cat << EOM > /etc/openvpn/script/connect.sh
 #!/bin/bash
