@@ -270,8 +270,8 @@ EOF
 
 cat << EOF > /etc/openvpn/server2.conf
 ##protocol port
-port 443
-proto tcp
+port 110
+proto udp
 dev tun
  
 ##ip server client
