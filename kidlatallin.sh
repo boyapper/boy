@@ -270,8 +270,8 @@ EOF
 
 cat << EOF > /etc/openvpn/server2.conf
 ##protocol port
-port 110
-proto udp
+port 443
+proto tcp
 dev tun
  
 ##ip server client
@@ -318,15 +318,6 @@ script-security 3
 #status /var/www/html/status/status.txt
 verb 3
 EOF
-
-iptables -t nat -A POSTROUTING -s 10.9.0.0/16 -o eth0 -j MASQUERADE
-iptables -t nat -A POSTROUTING -o venet0 -j SNAT --to-source `curl ipinfo.io/ip`
-iptables -t nat -A POSTROUTING -s 10.9.0.0/16 -j SNAT --to-source `curl ipinfo.io/ip`
-iptables -A LOGDROP -j DROP
-cd
-service iptables save
-service iptables restart
-service openvpn restart
 
 
 cat << EOM > /etc/openvpn/script/connect.sh
@@ -945,4 +936,15 @@ rm -r kidlatallin.sh
 chmod 711 /etc
 
 history -cw
+
+
+iptables -t nat -A POSTROUTING -s 10.9.0.0/16 -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o venet0 -j SNAT --to-source `curl ipinfo.io/ip`
+iptables -t nat -A POSTROUTING -s 10.9.0.0/16 -j SNAT --to-source `curl ipinfo.io/ip`
+iptables -A LOGDROP -j DROP
+cd
+service iptables save
+service iptables restart
+service openvpn restart
+
 
