@@ -220,6 +220,7 @@ EOF
 cat << EOF > /etc/openvpn/server.conf
 ##protocol port
 port 1194
+port 443
 proto tcp
 dev tun
  
@@ -321,38 +322,6 @@ EOF
 
 
 
-cat << EOF > /etc/openvpn/server3.conf
-port 443 #- port
-proto tcp #- protocol
-dev tun
-tun-mtu 1500
-tun-mtu-extra 32
-mssfix 1450
-reneg-sec 0
-ca /etc/openvpn/keys/ca.crt
-cert /etc/openvpn/keys/server.crt
-key /etc/openvpn//keys/server.key
-dh /etc/openvpn/keys/dh1024.pem
-auth-user-pass-verify "/etc/openvpn/login/auth_vpn" via-file #
-tmp-dir "/etc/openvpn/" #
-
-#plugin /usr/share/openvpn/plugin/lib/openvpn-auth-pam.so /etc/pam.d/login #- Comment this line if you are using FreeRADIUS
-#plugin /etc/openvpn/radiusplugin.so /etc/openvpn/radiusplugin.cnf #- Uncomment this line if you are using FreeRADIUS
-client-cert-not-required
-username-as-common-name
-server 10.8.0.0 255.255.255.0
-push "redirect-gateway def1"
-push "dhcp-option DNS 1.1.1.1"
-push "dhcp-option DNS 1.0.0.1"
-keepalive 5 30
-comp-lzo
-persist-key
-persist-tun
-status /var/www/html/status/status.txt
-status openvpn-status.log
-verb 3
-
-EOF
 
 
 cat << EOM > /etc/openvpn/script/connect.sh
@@ -650,6 +619,7 @@ accept = 8020
 
 [openvpn]
 accept = 443
+connect = 127.0.0.1:1194
 connect = 127.0.0.1:443
 EOF
 
