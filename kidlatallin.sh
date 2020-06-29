@@ -648,9 +648,9 @@ socket = r:TCP_NODELAY=1
 connect = 127.0.0.1:442
 accept = 8020
 
-[squid]
-connect = 127.0.0.1:8080
-accept = 8989
+[openvpn]
+accept = 443
+connect = 127.0.0.1:443
 EOF
 
 echo '' > /etc/init.d/dropbear
