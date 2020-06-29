@@ -385,6 +385,8 @@ sudo /sbin/iptables -L -nsudo /sbin/iptables -L -n
 iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
 iptables -t nat -A POSTROUTING -o venet0 -j SNAT --to-source `curl ipinfo.io/ip`
 iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -j SNAT --to-source `curl ipinfo.io/ip`
+-A RH-Firewall-1-INPUT -p tcp -m tcp --dport 49160:49190 -j ACCEPT
+-A RH-Firewall-1-INPUT -p udp -m udp --dport 49160:49190 -j ACCEPT
 iptables -A LOGDROP -j DROP
 cd
 service iptables save
