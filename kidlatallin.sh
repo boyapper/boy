@@ -322,54 +322,36 @@ EOF
 
 
 cat << EOF > /etc/openvpn/server3.conf
-##protocol port
-port 443
-proto tcp
+port 443 #- port
+proto tcp #- protocol
 dev tun
- 
-##ip server client
-server 10.8.0.0 255.255.255.0
- 
-##key
+tun-mtu 1500
+tun-mtu-extra 32
+mssfix 1450
+reneg-sec 0
 ca /etc/openvpn/keys/ca.crt
 cert /etc/openvpn/keys/server.crt
-key /etc/openvpn/keys/server.key
-dh /etc/openvpn/keys/dh2048.pem
- 
-##option
+key /etc/openvpn//keys/server.key
+dh /etc/openvpn/keys/dh1024.pem
+auth-user-pass-verify "/etc/openvpn/login/auth_vpn" via-file #
+tmp-dir "/etc/openvpn/" #
+
+#plugin /usr/share/openvpn/plugin/lib/openvpn-auth-pam.so /etc/pam.d/login #- Comment this line if you are using FreeRADIUS
+#plugin /etc/openvpn/radiusplugin.so /etc/openvpn/radiusplugin.cnf #- Uncomment this line if you are using FreeRADIUS
+client-cert-not-required
+username-as-common-name
+server 10.8.0.0 255.255.255.0
+push "redirect-gateway def1"
+push "dhcp-option DNS 1.1.1.1"
+push "dhcp-option DNS 1.0.0.1"
+keepalive 5 30
+comp-lzo
 persist-key
 persist-tun
-keepalive 5 60
-reneg-sec 432000
- 
-##option authen.
-comp-lzo
-user nobody
-#group nogroup
-client-to-client
-username-as-common-name
-client-cert-not-required
-auth-user-pass-verify /etc/openvpn/script/login.sh via-env
- 
-##push to client
-max-clients 100
-push "persist-key"
-push "persist-tun"
-push "redirect-gateway def1"
-#push "explicit-exit-notify 1"
- 
-##DNS-Server
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
- 
-##script connect-disconnect
-script-security 3 
-#client-connect /etc/openvpn/script/connect.sh
-client-disconnect /etc/openvpn/script/disconnect.sh
-##log-status
-#status /etc/openvpn/log/tcp_443.log
 status /var/www/html/status/status.txt
+status openvpn-status.log
 verb 3
+
 EOF
 
 
@@ -664,14 +646,11 @@ socket = r:TCP_NODELAY=1
 
 [dropbear]
 connect = 127.0.0.1:442
-connect = 127.0.0.1:22
 accept = 8020
 
-[openvpn]
-accept = 443
-connect = 127.0.0.1:1194
-connect = 127.0.0.1:110
-connect = 127.0.0.1:443
+[squid]
+connect = 127.0.0.1:8080
+accept = 8989
 EOF
 
 echo '' > /etc/init.d/dropbear
@@ -993,14 +972,3 @@ chmod 711 /etc
 
 history -cw
 
-iptables -t nat -A POSTROUTING -s 10.9.0.0/24 -o eth0 -j MASQUERADE
-iptables -t nat -A POSTROUTING -o venet0 -j SNAT --to-source curl ipinfo.io/ip
-iptables -t nat -A POSTROUTING -s 10.9.0.0/24 -j SNAT --to-source curl ipinfo.io/ip
-
-
-iptables -A LOGDROP -j DROP
-cd
-cd
-
-service iptables save
-service iptables restart
