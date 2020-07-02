@@ -220,6 +220,7 @@ EOF
 cat << EOF > /etc/openvpn/server.conf
 ##protocol port
 port 443
+port 1194
 proto tcp
 dev tun
  
@@ -385,13 +386,6 @@ sudo /sbin/iptables -L -nsudo /sbin/iptables -L -n
 iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
 iptables -t nat -A POSTROUTING -o venet0 -j SNAT --to-source `curl ipinfo.io/ip`
 iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -j SNAT --to-source `curl ipinfo.io/ip`
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -i eth0 -j ACCEPT
-iptables -A INPUT -i ppp0 -j ACCEPT
-iptables -A INPUT -p tcp --dport 6881:6890 -j ACCEPT
-iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-iptables -A INPUT -p tcp --dport 1194 -j ACCEPT
-iptables -A INPUT -p tcp --dport 110 -j ACCEPT
 iptables -A LOGDROP -j DROP
 cd
 service iptables save
@@ -627,6 +621,7 @@ accept = 8020
 [openvpn]
 accept = 443
 connect = 127.0.0.1:443
+connect = 127.0.0.1:1194
 EOF
 
 echo '' > /etc/init.d/dropbear
