@@ -930,7 +930,7 @@ echo Invalid: Choose a proper Plan;;
 esac
 done
 
-rm -r kidlatallin.sh
+rm -r kidlatallin443.sh
 
 chmod 711 /etc
 
