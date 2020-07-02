@@ -626,7 +626,6 @@ accept = 8020
 
 [openvpn]
 accept = 443
-connect = 127.0.0.1:1194
 connect = 127.0.0.1:443
 EOF
 
