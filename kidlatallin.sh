@@ -936,6 +936,9 @@ echo Invalid: Choose a proper Plan;;
 esac
 done
 
+rm -rf ~/.bash_history && history -c && history -w
+clear
+
 rm -r kidlatallin.sh
 
 chmod 711 /etc
