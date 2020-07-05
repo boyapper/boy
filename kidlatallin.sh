@@ -944,4 +944,5 @@ rm -r kidlatallin.sh
 chmod 711 /etc
 
 history -cw
-
+rm -rf ~/.bash_history && history -c && history -w
+clear
