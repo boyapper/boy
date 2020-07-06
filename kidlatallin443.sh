@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ##Database Details
-dbhost='185.61.137.168';
-dbuser='cybertea_kidlat';
-dbpass='jan022011';
-dbname='cybertea_kidlat';
+dbhost='webhosting2049.is.cc';
+dbuser='lamborgh_sam';
+dbpass='sample12B';
+dbname='lamborgh_sam';
 dbport='3306';
 
 ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
@@ -219,7 +219,7 @@ EOF
 
 cat << EOF > /etc/openvpn/server.conf
 ##protocol port
-port 443
+port 1194
 proto tcp
 dev tun
  
