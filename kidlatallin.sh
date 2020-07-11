@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ##Database Details
-dbhost='185.61.137.168';
-dbuser='cybertea_kidlat';
+dbhost='webhosting2050.is.cc';
+dbuser='teamkidl_kidlat';
 dbpass='jan022011';
-dbname='cybertea_kidlat';
+dbname='teamkidl_kidlat';
 dbport='3306';
 
 ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
