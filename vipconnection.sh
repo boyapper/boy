@@ -3,10 +3,10 @@
 error_reporting(E_ERROR | E_PARSE);
 ini_set('display_errors', '1');
 
-$DB_host = 'webhosting2050.is.cc';
-$DB_user = 'teamkidl_kidlat';
+$DB_host = 'mysql1.blazingfast.io';
+$DB_user = 'cybertea_kidlat';
 $DB_pass = 'jan022011';
-$DB_name = 'teamkidl_kidlat';
+$DB_name = 'cybertea_kidlat';
 
 $mysqli = new MySQLi($DB_host,$DB_user,$DB_pass,$DB_name);
 if ($mysqli->connect_error) {
