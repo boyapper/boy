@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ##Database Details
-dbhost='webhosting2050.is.cc';
-dbuser='teamkidl_kidlat';
+dbhost='mysql1.blazingfast.io';
+dbuser='cybertea_kidlat';
 dbpass='jan022011';
-dbname='teamkidl_kidlat';
+dbname='cybertea_kidlat';
 dbport='3306';
 
 ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
