@@ -20,7 +20,7 @@ yum install vixie-cron crontabs httpd git zip unzip epel-release -y
 yum install php php-pdo php-mysqli php-mysql php-gd php-mbstring.x86_64 -y
 yum install php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-snmp php-soap curl curl-devel -y
 
-
+openssl dhparam -out /etc/openvpn/dh2048.pem 2048;
 
 #CreatingFOlders
 mkdir /usr/sbin/kpn
@@ -613,7 +613,7 @@ connect = 127.0.0.1:442
 accept = 8020
 
 [openvpn]
-accept = 1194
+accept = 443
 connect = 127.0.0.1:443
 EOF
 
