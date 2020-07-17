@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##Database Details
-dbhost='mysql1.blazingfast.io';
+dbhost='185.61.137.168';
 dbuser='cybertea_kidlat';
 dbpass='jan022011';
 dbname='cybertea_kidlat';
@@ -319,9 +319,6 @@ script-security 3
 verb 3
 EOF
 
-
-
-
 cat << EOM > /etc/openvpn/script/connect.sh
 #!/bin/bash
 . /etc/openvpn/script/config.sh
@@ -383,14 +380,10 @@ sudo /sbin/iptables -L -nsudo /sbin/iptables -L -n
 iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
 iptables -t nat -A POSTROUTING -o venet0 -j SNAT --to-source `curl ipinfo.io/ip`
 iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -j SNAT --to-source `curl ipinfo.io/ip`
-iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
-iptables -t nat -A POSTROUTING -o venet0 -j SNAT --to-source `curl ipinfo.io/ip`
-iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -j SNAT --to-source `curl ipinfo.io/ip`
 iptables -A LOGDROP -j DROP
 cd
 service iptables save
 service iptables restart
-service openvpn restart
 echo 0 > /selinux/enforce
   SELINUX=enforcing
  SELINUX=disabled
@@ -618,6 +611,10 @@ socket = r:TCP_NODELAY=1
 connect = 127.0.0.1:442
 accept = 8020
 
+[openvpn]
+accept = 443
+connect = 127.0.0.1:1194
+EOF
 
 echo '' > /etc/init.d/dropbear
 /bin/cat <<"EOM" >/etc/init.d/dropbear
@@ -932,13 +929,8 @@ echo Invalid: Choose a proper Plan;;
 esac
 done
 
-rm -rf ~/.bash_history && history -c && history -w
-clear
-
 rm -r kidlatallin.sh
 
 chmod 711 /etc
 
 history -cw
-rm -rf ~/.bash_history && history -c && history -w
-clear
