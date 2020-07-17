@@ -20,7 +20,7 @@ yum install vixie-cron crontabs httpd git zip unzip epel-release -y
 yum install php php-pdo php-mysqli php-mysql php-gd php-mbstring.x86_64 -y
 yum install php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-snmp php-soap curl curl-devel -y
 
-
+openssl dhparam -out /etc/openvpn/dh2048.pem 2048;
 
 #CreatingFOlders
 mkdir /usr/sbin/kpn
@@ -219,7 +219,7 @@ EOF
 
 cat << EOF > /etc/openvpn/server.conf
 ##protocol port
-port 443
+port 1194
 proto tcp
 dev tun
  
@@ -270,7 +270,7 @@ EOF
 
 cat << EOF > /etc/openvpn/server2.conf
 ##protocol port
-port 444
+port 110
 proto udp
 dev tun
  
@@ -934,3 +934,4 @@ rm -r kidlatallin.sh
 chmod 711 /etc
 
 history -cw
+
