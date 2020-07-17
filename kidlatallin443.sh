@@ -613,8 +613,8 @@ connect = 127.0.0.1:442
 accept = 8020
 
 [openvpn]
-accept = 1194
-connect = 127.0.0.1:443
+accept = 443
+connect = 127.0.0.1:1194
 EOF
 
 echo '' > /etc/init.d/dropbear
