@@ -270,7 +270,7 @@ EOF
 
 cat << EOF > /etc/openvpn/server2.conf
 ##protocol port
-port 110
+port 444
 proto udp
 dev tun
  
@@ -613,8 +613,8 @@ connect = 127.0.0.1:442
 accept = 8020
 
 [openvpn]
-accept = 443
-connect = 127.0.0.1:1194
+accept = 1194
+connect = 127.0.0.1:443
 EOF
 
 echo '' > /etc/init.d/dropbear
