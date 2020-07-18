@@ -20,7 +20,6 @@ yum install vixie-cron crontabs httpd git zip unzip epel-release -y
 yum install php php-pdo php-mysqli php-mysql php-gd php-mbstring.x86_64 -y
 yum install php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-snmp php-soap curl curl-devel -y
 
-openssl dhparam -out /etc/openvpn/dh2048.pem 2048;
 
 #CreatingFOlders
 mkdir /usr/sbin/kpn
@@ -219,7 +218,7 @@ EOF
 
 cat << EOF > /etc/openvpn/server.conf
 ##protocol port
-port 1194
+port 443
 proto tcp
 dev tun
  
@@ -270,7 +269,7 @@ EOF
 
 cat << EOF > /etc/openvpn/server2.conf
 ##protocol port
-port 110
+port 444
 proto udp
 dev tun
  
@@ -611,9 +610,13 @@ socket = r:TCP_NODELAY=1
 connect = 127.0.0.1:442
 accept = 8020
 
+[squid]
+connect = 127.0.0.1:8080
+accept = 8989
+
 [openvpn]
 accept = 443
-connect = 127.0.0.1:1194
+connect = 127.0.0.1:443
 EOF
 
 echo '' > /etc/init.d/dropbear
